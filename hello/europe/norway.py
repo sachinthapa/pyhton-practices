@@ -1,0 +1,2 @@
+print("Norwegian: Hei verden")
+
