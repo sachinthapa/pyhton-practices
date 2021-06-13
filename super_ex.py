@@ -14,6 +14,7 @@ class Rectangle:
 # the Rectangle class
 class Square(Rectangle):
     def __init__(self, length, **kwargs):
+        print("Square")
         super().__init__(length=length, width = length, **kwargs)
 
 class Cube(Square):
@@ -27,6 +28,7 @@ class Cube(Square):
 
 class Triangle:
     def __init__(self, base, height, **kwargs):
+        print("Traingle")
         self.base = base
         self.height = height
         super().__init__(**kwargs)
@@ -41,6 +43,7 @@ class RightPyramid(Square, Triangle):
         kwargs["height"] = slant_height
         kwargs["length"] = base
         kwargs["base"]= base 
+        print("call super")
         super().__init__(**kwargs)
 
     def area(self):
@@ -54,8 +57,8 @@ class RightPyramid(Square, Triangle):
         return triangle_area * 4 + base_area
 
 
-cube = Cube(5)
-print(f'cube surface_area -> {cube.surface_area()}')
+#cube = Cube(5)
+#print(f'cube surface_area -> {cube.surface_area()}')
 
 pyramid = RightPyramid(6,6)
 print(f'area -> {pyramid.area()}')

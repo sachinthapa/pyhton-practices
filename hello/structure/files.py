@@ -12,7 +12,7 @@ def unique_path(directory, name_pattern):
 
 def add_empty_file(path):
     """Create an empty file at the given path"""
-    print(f"Create file: {path}")
+#    print(f"Create file: {path}")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.touch()
 
@@ -21,9 +21,11 @@ root = pathlib.Path(argvs_path).resolve()
 
 unique_path = unique_path(root, "{:03d}")
 
+
 for path in root.rglob("*"):
+#    print(path)
     if path.is_file() and  unique_path not in path.parents:
-        print(f'path parent {path.parent}')
+        #print(f'path parent {path.parent}')
         rel_path = path.relative_to(root)
         print(rel_path)
         add_empty_file(unique_path / rel_path)

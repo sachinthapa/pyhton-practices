@@ -4,7 +4,8 @@ import math
 import random
 
 
-def repeat(_func=None, *, num_times):
+def repeat(_func=None, *, num_times = 2):
+    print(f"func {_func}")
     def decorator_repeat(func):
         @functools.wraps(func)
         def wrapper_repeat(*args, **kwargs):
@@ -15,12 +16,15 @@ def repeat(_func=None, *, num_times):
     if _func is None:
         return decorator_repeat
     else:
-        return decorator_repeat(_func)
+        return decorator_repeat
 
 def timer(func):
     def wrapper_timer(*args, **kwargs):
         args_repr = [f"{a!r}" for a in args]
+        
         kwargs_repr = [f"{k} = {v!r}" for k, v in kwargs.items()]
+        print(f"kwargs_repr {kwargs_repr}")
+
         signature = ",".join(args_repr + kwargs_repr)
         print(f"calling {func.__name__}({signature})")
         start_time = time.perf_counter()
@@ -94,7 +98,7 @@ def volume(value):
     return value * 2
 
 volume_unit = volume(5)
-print(volume.unit)
+#print(volume.unit)
 
 @cache_test
 @CountCalls
@@ -110,7 +114,7 @@ class Test:
 
 
 @timer
-def waste_time(repeat, args1, dummy_kwargs):
+def waste_time(repeat, args1, dummy_kwargs = None):
     wasted_sum = 0
     for i in range(repeat):
         wasted_sum += sum([i**2 for i in range(1000)])
@@ -118,7 +122,7 @@ def waste_time(repeat, args1, dummy_kwargs):
 
 
 my_dict = {'six': 6, 'nine': 9, 'ten': 10}
-# waste_time(10,15,my_dict)
+#waste_time(10,15, dummy_kwargs = my_dict)
 
 math.factorial = timer(math.factorial)
 
@@ -132,11 +136,13 @@ def say_bye(name):
     print(f'Bye {name}')
 
 
-@register
-@repeat(num_times=2)
-@CountCalls
+#@register
+@repeat()
+#@CountCalls
 def say_hello(name):
     print(f'Hello {name}')
+
+say_hello("sachin")
 
 # function_name, function_call = random.choice(list(PLUGINS.items()))
 # function_call('sachin')

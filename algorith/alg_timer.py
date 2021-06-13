@@ -41,17 +41,23 @@ def bubble_sort(array):
 
 
 def insertion_sort(array):
+    print(array)
     n = len(array)
-
+    
     for i in range(1, n):
         key = array[i]
         j = i - 1
 
         while j >= 0 and array[j] > key:
+            print(f"{array[j]} > {key}")
+            print(f"{array[j+1]} = {array[j]}")
             array[j + 1] = array[j]
             j -= 1
+            print (f"\t\t array {array}")
 
         array[j + 1] = key
+
+        print(f"array {array} \n")
     return array
 
 
@@ -117,7 +123,7 @@ def quick_sort(array, level: str = 'def'):
     return quick_sort(low, 'low') + same + quick_sort(high, 'high')
 
 
-def insertion_sort(array, left, right=None):
+def insertion_sort_insert(array, left, right=None):
     print(f'left -> {left} right(min) -> {right}')
     if right is None:
         right = len(array) - 1
@@ -157,7 +163,10 @@ if __name__ == "__main__":
 
 #    run_sorting_algorithm(algorithm="sorted", array=array)
 #    run_sorting_algorithm(algorithm="merge_sort", array=array)
-#    run_sorting_algorithm(algorithm="insertion_sort", array=array)
+#    run_sorting_algorithm(algorithm="insertion_sort", array=[5,9,4,3,6,7])
 #    run_sorting_algorithm(algorithm="bubble_sort", array=array)
 #    run_sorting_algorithm(algorithm="quick_sort", array = array)
-    timsort(array)
+#    timsort(array)
+
+    insertion_sort([5,9,7,8,4,3,1])
+    

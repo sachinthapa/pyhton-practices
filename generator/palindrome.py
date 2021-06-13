@@ -6,8 +6,13 @@ def is_palindrome(num):
     reversed_num = 0
 
     while temporary != 0:
+        print(f"{reversed_num * 10} {temporary%10}")
+
         reversed_num = (reversed_num * 10) + (temporary % 10)
+        print(f"reversed_num {reversed_num}")
         temporary = temporary//10
+        print(f" temporaryi {temporary}")
+
 
     if num == reversed_num:
         return num

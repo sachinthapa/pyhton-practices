@@ -100,6 +100,8 @@ if __name__ == "__main__":
     with open(here.joinpath("urls.txt")) as infile:
         urls = set(map(str.strip, infile))
 
+    print(f"url {urls}")
+
     outpath = here.joinpath("foundurls.txt")
     with open(outpath, "w") as outfile:
         outfile.write("source_url\tparsed_url\n")

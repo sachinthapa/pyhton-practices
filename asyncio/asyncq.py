@@ -9,14 +9,14 @@ async def makeitem(size: int = 5) -> str:
 
 
 async def randsleep(a: int = 1, b: int = 5, caller=None) -> None:
-    i = random.randint(0, 10)
+    i = random.randint(0, 5)
     if caller:
         print(f"{caller} sleeping for {i} seconds.")
     await asyncio.sleep(i)
 
 
 async def produce(name, q):
-    n = random.randint(0, 2)
+    n = random.randint(0, 5)
     print(f"Producing {n} items...")
     for _ in it.repeat(None, n):
         await randsleep(caller=f"Producer {name}")
@@ -27,7 +27,7 @@ async def produce(name, q):
 
 async def consume(name, q: asyncio.Queue):
     while True:
-        await randsleep(caller=f"Consumer {name}")
+#        await randsleep(caller=f"Consumer {name}")
         i = await q.get()
         print(f"Comsumer {name} consuming item {i}")
         q.task_done() #Notifies task completed to return to 42 join()
@@ -46,8 +46,8 @@ async def main(nprod: int, ncons: int):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--nprod", type=int, default=1)
-    parser.add_argument("-c", "--ncons", type=int, default=9)
+    parser.add_argument("-p", "--nprod", type=int, default=5)
+    parser.add_argument("-c", "--ncons", type=int, default=2)
 
     ns = parser.parse_args()
     asyncio.run(main(**ns.__dict__))
